@@ -12,11 +12,9 @@ fun main() {
         input.forEach {
             val compartment1 = it.substring(0, it.length / 2).toCharArray()
             val compartment2 = it.substring(it.length / 2).toCharArray()
-            // println("${compartment1.joinToString()}  -  ${compartment2.joinToString()}")
             val items1 = compartment1.distinct()
             items1.forEach {
                 if (compartment2.contains(it)) {
-                    // println("$it  ${prioritize(it)}")
                     sum += prioritize(it)
                 }
             }
