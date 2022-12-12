@@ -34,14 +34,10 @@ fun main() {
         heightmap[end.second][end.first] = 'z'
 
         // then check out, where we can go
-        /*
-        val possibleMoves = ArrayDeque<MutableList<Pair<Int, Int>>>()
-        possibleMoves.add(mutableListOf(start))
-        */
         val possibleMoves = ArrayDeque<Pair<Int, Int>>()
         possibleMoves.add(start)
 
-        val distanceMap = Array<Array<Int>>(heightmap.size) { Array<Int>(heightmap[0].size) { Int.MAX_VALUE } }
+        val distanceMap = Array(heightmap.size) { Array(heightmap[0].size) { Int.MAX_VALUE } }
 
         distanceMap[start.second][start.first] = 0
 
@@ -103,15 +99,11 @@ fun main() {
         heightmap[end.second][end.first] = 'z'
 
         // then check out, where we can go
-        /*
-        val possibleMoves = ArrayDeque<MutableList<Pair<Int, Int>>>()
-        possibleMoves.add(mutableListOf(start))
-        */
         val possibleMoves = ArrayDeque<Pair<Int, Int>>()
         possibleMoves.add(start)
         possibleMoves.addAll(findAll('a', input))
 
-        val distanceMap = Array<Array<Int>>(heightmap.size) { Array<Int>(heightmap[0].size) { Int.MAX_VALUE } }
+        val distanceMap = Array(heightmap.size) { Array(heightmap[0].size) { Int.MAX_VALUE } }
 
         possibleMoves.forEach {
             distanceMap[it.second][it.first] = 0
