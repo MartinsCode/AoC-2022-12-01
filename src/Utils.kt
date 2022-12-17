@@ -30,3 +30,59 @@ fun cutString(text: String, len: Int): MutableList<String> {
  * Removes spaces around string and converts to Int.
  */
 fun intify(text: String): Int = text.trim().toInt()
+
+/**
+ * Permutate a list or ordered collection
+ */
+fun permutate(list_: List<String>): MutableList<MutableList<String>> {
+    var sublist: MutableList<String> = mutableListOf()
+    var list = list_.toMutableList()
+    val permutations = mutableListOf<MutableList<String>>()
+    if (list_.size > 1) {
+        for (i in list) {
+            list = mutableListOf()
+            list.addAll(list_)
+     //       println(sublist)
+            list.remove(i)
+            val subpermutations = permutate(list).toMutableList()
+            subpermutations.forEach {
+                val sublist = mutableListOf(i)
+                sublist.addAll(it)
+                permutations.add(sublist)
+            }
+        }
+    } else {
+        permutations.add(list)
+    }
+    return permutations
+}
+
+fun permutateMaxLength(list_: List<String>, maxLength: Int): MutableList<MutableList<String>> {
+    println("Max permutation length: $maxLength")
+    var sublist: MutableList<String> = mutableListOf()
+    var list = list_.toMutableList()
+    val permutations = mutableListOf<MutableList<String>>()
+    if (list_.size > 1 ) {
+        if (maxLength > 1) {
+            for (i in list) {
+                list = mutableListOf()
+                list.addAll(list_)
+                //       println(sublist)
+                list.remove(i)
+                val subpermutations = permutateMaxLength(list, maxLength - 1).toMutableList()
+                subpermutations.forEach {
+                    val sublist = mutableListOf(i)
+                    sublist.addAll(it)
+                    permutations.add(sublist)
+                }
+            }
+        } else {
+            list_.forEach{
+                permutations.add(mutableListOf(it))
+            }
+        }
+    } else {
+        permutations.add(list)
+    }
+    return permutations
+}
